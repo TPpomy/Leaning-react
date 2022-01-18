@@ -1,0 +1,12 @@
+.expance {
+  border-right: 5px solid red;
+}
+.income {
+  border-right: 5px solid blue;
+}
+span {
+  text-align: right;
+}
+li {
+  text-align: left;
+}

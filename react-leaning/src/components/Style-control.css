@@ -1,0 +1,22 @@
+.item {
+  text-align: center;
+}
+
+label {
+  text-align: center;
+  display: inline-block;
+  margin: 10px 0;
+}
+input {
+  display: block;
+  border: 10px solid #f1f1f1;
+  border-radius: 2px;
+}
+.btn {
+  cursor: pointer;
+  background-color: blueviolet;
+  color: white;
+  display: block;
+  margin: 10px 0 30px;
+  padding: 10px;
+}
