@@ -24,7 +24,7 @@ const Content = (props) => {
     setDatatext("");
   };
   useEffect(() => {
-    setFormValid(datatext.trim().length > 0 && datanum !== 0);
+    setFormValid(datatext.trim().length > 0 && datanum !== 0 && datanum !== "");
   }, [datatext, datanum]);
   return (
     <div>

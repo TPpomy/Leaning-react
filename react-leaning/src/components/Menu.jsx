@@ -1,5 +1,7 @@
 import React from "react";
 import "./item.css";
+import { useContext } from "react";
+import DataContext from "./data/DataContext";
 const Menu = (props) => {
   const { title, number } = props;
   const status = number < 0 ? "expance" : "income";
