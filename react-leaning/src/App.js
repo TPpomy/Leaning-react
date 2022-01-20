@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Content from "./components/Content";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import Transation from "./components/Transation";
 import DataContext from "./components/data/DataContext";
 import Report from "./components/Report";
+import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 function App() {
-  const initState = [
-    { id: 1, title: "data1", number: 1000 },
-    { id: 2, title: "data2", number: -1000 },
-    { id: 3, title: "data3", number: 5000 },
-    { id: 4, title: "data4", number: -3000 },
-  ];
   const [dataIncome, setdataIncome] = useState(0);
   const [dataExpance, setdataExpance] = useState(0);
-  const [items, setItems] = useState(initState);
+  const [items, setItems] = useState([]);
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     const costs = items.map((items) => items.number);
 
@@ -31,13 +28,40 @@ function App() {
       return [newItem, ...e];
     });
   };
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "SHOW":
+        return setShow(true);
+      case "HIDE":
+        return setShow(false);
+    }
+  };
+  const [result, dispatch] = useReducer(reducer, show);
   return (
     <DataContext.Provider value={{ income: dataIncome, expance: dataExpance }}>
       <div>
         <Navbar />
-        <Report />
-        <Content onAdditem={addNewitem} />
-        <Transation items={items} />
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">บันทึกข้อมูล</Link>
+              </li>
+              <li>
+                <Link to="/save">ข้อมูลบัญชี</Link>
+              </li>
+            </ul>
+            <Switch>
+              <Route path="/" exact>
+                <Content onAdditem={addNewitem} />
+                <Transation items={items} />
+              </Route>
+              <Route path="/save">
+                <Report />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </div>
     </DataContext.Provider>
   );

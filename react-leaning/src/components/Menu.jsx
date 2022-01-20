@@ -6,13 +6,17 @@ const Menu = (props) => {
   const { title, number } = props;
   const status = number < 0 ? "expance" : "income";
   const symbol = number < 0 ? "-" : "+";
+  const formatnumber = (num) => {
+    return num.toLocaleString();
+  };
+
   return (
     <div>
       <li className={status}>
         {title}
         <span>
           {symbol}
-          {Math.abs(number)}
+          {formatnumber(Math.abs(number))}
         </span>
       </li>
     </div>
